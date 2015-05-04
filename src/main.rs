@@ -3,10 +3,9 @@ extern crate rand;
 extern crate rustbox;
 use std::process::exit;
 use std::time::duration::Duration;
-use rand::Rng;
 use rustbox::Event::*;
 use rustbox::Key::{Esc,Char};
-use rustbox::{RustBox,Color,RB_NORMAL,Mouse};
+use rustbox::{RustBox,RB_NORMAL,Mouse};
 use rustbox::Color::*;
 
 static OFFSETS: &'static [(isize,isize)] = &[
