@@ -17,7 +17,8 @@ static OFFSETS: &'static [(isize,isize)] = &[
 struct GameOfLife {
     width: usize,
     height: usize,
-    field: Vec<Vec<bool>>
+    field: Vec<Vec<bool>>,
+    next: Vec<Vec<bool>>
 }
 
 impl GameOfLife {
@@ -25,7 +26,8 @@ impl GameOfLife {
         GameOfLife {
             width: width,
             height: height,
-            field: vec![vec![false; height]; width]
+            field: vec![vec![false; height]; width],
+            next: vec![vec![false; height]; width]
         }
     }
 
@@ -82,13 +84,12 @@ impl GameOfLife {
 
     pub fn step(&mut self) {
         let (width, height) = (self.width(), self.height());
-        let mut next = vec![vec![false; height]; width];
         for x in (0..width) {
             for y in (0..height) {
-                next[x][y] = self.apply_rule(x, y);
+                self.next[x][y] = self.apply_rule(x, y);
             }
         }
-        self.field = next;
+        std::mem::swap(&mut self.field, &mut self.next);
     }
 
     // Implements only Conway's rule for now
