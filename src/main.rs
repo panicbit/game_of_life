@@ -64,8 +64,7 @@ impl GameOfLife {
     }
 
     pub fn neighbours(&self, x: usize, y: usize) -> usize {
-        OFFSETS.into_iter().flat_map(|xy| {
-            let &(xv, yv) = xy;
+        OFFSETS.into_iter().flat_map(|&(xv, yv)| {
             let (x, y) = (x as isize + xv, y as isize + yv);
             let (x, y) = (x as usize, y as usize);
             self.get(x, y)
