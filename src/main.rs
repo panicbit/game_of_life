@@ -5,7 +5,7 @@ use std::process::exit;
 use std::time::duration::Duration;
 use rustbox::Event::*;
 use rustbox::Key::{Esc,Char};
-use rustbox::{RustBox,RB_NORMAL,Mouse};
+use rustbox::{RustBox,InputMode,RB_NORMAL,Mouse};
 use rustbox::Color::*;
 
 static OFFSETS: &'static [(isize,isize)] = &[
@@ -105,7 +105,7 @@ impl GameOfLife {
 
 fn main() {
     let rustbox = RustBox::init(Default::default()).ok().expect("rustbox init");
-    rustbox.set_input_mode(rustbox::RB_INPUT_ESC | rustbox::RB_INPUT_MOUSE);
+    rustbox.set_input_mode(rustbox::InputMode::Mouse);
 
     let (width, height) = (rustbox.width(), rustbox.height());
     let mut game = GameOfLife::new(width, height);
