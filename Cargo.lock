@@ -3,7 +3,7 @@ name = "conway"
 version = "0.1.0"
 dependencies = [
  "rand 0.3.8 (registry+https://github.com/rust-lang/crates.io-index)",
- "rustbox 0.5.1 (git+https://github.com/panicbit/rustbox?branch=mouse_events)",
+ "rustbox 0.6.0 (git+https://github.com/panicbit/rustbox?branch=mouse_events)",
 ]
 
 [[package]]
@@ -21,16 +21,16 @@ dependencies = [
 
 [[package]]
 name = "gag"
-version = "0.1.5"
+version = "0.1.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "libc 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
  "tempfile 0.2.0 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "libc"
-version = "0.1.6"
+version = "0.1.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 
 [[package]]
@@ -47,19 +47,19 @@ name = "rand"
 version = "0.3.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "libc 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "rustbox"
-version = "0.5.1"
-source = "git+https://github.com/panicbit/rustbox?branch=mouse_events#d4c7e4ac719e0fd0b90d2c1bec138b2c2e5457f8"
+version = "0.6.0"
+source = "git+https://github.com/panicbit/rustbox?branch=mouse_events#a74ed4ac9793e7bc05fa822e865511f6e9a2bd5b"
 dependencies = [
  "bitflags 0.1.1 (registry+https://github.com/rust-lang/crates.io-index)",
  "enum_primitive 0.0.2 (registry+https://github.com/rust-lang/crates.io-index)",
- "gag 0.1.5 (registry+https://github.com/rust-lang/crates.io-index)",
+ "gag 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",
  "num 0.1.24 (registry+https://github.com/rust-lang/crates.io-index)",
- "termbox-sys 0.2.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "termbox-sys 0.2.7 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
@@ -72,15 +72,15 @@ name = "tempfile"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "libc 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
  "rand 0.3.8 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
 [[package]]
 name = "termbox-sys"
-version = "0.2.6"
+version = "0.2.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 dependencies = [
- "libc 0.1.6 (registry+https://github.com/rust-lang/crates.io-index)",
+ "libc 0.1.7 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
 
