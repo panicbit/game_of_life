@@ -104,7 +104,7 @@ impl GameOfLife {
 
 fn main() {
     let rustbox = RustBox::init(Default::default()).ok().expect("rustbox init");
-    rustbox.set_input_mode(rustbox::InputMode::Mouse);
+    rustbox.set_input_mode(InputMode::EscMouse);
 
     let (width, height) = (rustbox.width(), rustbox.height());
     let mut game = GameOfLife::new(width, height);
