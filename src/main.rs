@@ -114,7 +114,7 @@ fn main() {
     game.set_on(1, 2);
     game.set_on(2, 2);
     game.set_on(3, 2);
-    game.set_on(4, 2);    
+    game.set_on(4, 2);
     game.set_on(4, 3);
     game.set_on(4, 4);
     game.set_on(0, 3);
