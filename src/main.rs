@@ -1,13 +1,12 @@
-#![feature(std_misc)]
 extern crate rand;
 extern crate rustbox;
 use std::process::exit;
-use std::time::duration::Duration;
+use std::time::Duration;
 use rustbox::Event::*;
 use rustbox::Key::{Esc,Char};
 use rustbox::{RustBox,InputMode,RB_NORMAL,Mouse};
 use rustbox::Color::*;
-
+ 
 static OFFSETS: &'static [(isize,isize)] = &[
     (-1,-1), ( 0,-1), ( 1,-1),
     (-1, 0),          ( 1, 0),
@@ -103,7 +102,7 @@ impl GameOfLife {
 }
 
 fn main() {
-    let rustbox = RustBox::init(Default::default()).ok().expect("rustbox init");
+    let rustbox = RustBox::init(<_>::default()).ok().expect("rustbox init");
     rustbox.set_input_mode(InputMode::EscMouse);
 
     let (width, height) = (rustbox.width(), rustbox.height());
@@ -131,9 +130,9 @@ fn main() {
     loop {
         rustbox.clear();
 
-        match rustbox.peek_event(Duration::milliseconds(50), false) {
+        match rustbox.peek_event(Duration::from_millis(50), false) {
         //match rustbox.poll_event(false) {
-            Ok(KeyEvent(Some(key))) => match key {
+            Ok(KeyEvent(key)) => match key {
                 Esc => {drop(rustbox); exit(0)}
                 Char(' ') => active = !active,
                 Char('c') => game.clear(),
