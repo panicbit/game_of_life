@@ -82,8 +82,8 @@ impl GameOfLife {
 
     pub fn step(&mut self) {
         let (width, height) = (self.width(), self.height());
-        for x in (0..width) {
-            for y in (0..height) {
+        for x in 0..width {
+            for y in 0..height {
                 self.next[x][y] = self.apply_rule(x, y);
             }
         }
@@ -149,8 +149,8 @@ fn main() {
             game.step();
         }
 
-        for x in (0..width) {
-            for y in (0..height) {
+        for x in 0..width {
+            for y in 0..height {
                 match game.get(x, y) {
                     Some(true) => set_on(&rustbox, x, y),
                     Some(false) => set_off(&rustbox, x, y),
