@@ -6,26 +6,27 @@ use rustbox::Event::*;
 use rustbox::Key::{Esc,Char};
 use rustbox::{RustBox,InputMode,RB_NORMAL,Mouse};
 use rustbox::Color::*;
-
-mod rule;
-use rule::Rule;
+ 
+static OFFSETS: &'static [(isize,isize)] = &[
+    (-1,-1), ( 0,-1), ( 1,-1),
+    (-1, 0),          ( 1, 0),
+    (-1, 1), ( 0, 1), ( 1, 1)
+];
 
 struct GameOfLife {
     width: usize,
     height: usize,
     field: Vec<Vec<bool>>,
-    next: Vec<Vec<bool>>,
-    rule: Box<Rule>,
+    next: Vec<Vec<bool>>
 }
 
 impl GameOfLife {
-    fn new(width: usize, height: usize, rule: impl Rule + 'static) -> GameOfLife {
+    fn new(width: usize, height: usize) -> GameOfLife {
         GameOfLife {
             width: width,
             height: height,
             field: vec![vec![false; height]; width],
-            next: vec![vec![false; height]; width],
-            rule: Box::new(rule),
+            next: vec![vec![false; height]; width]
         }
     }
 
@@ -61,6 +62,16 @@ impl GameOfLife {
         self.set(x, y, false);
     }
 
+    pub fn neighbours(&self, x: usize, y: usize) -> usize {
+        OFFSETS.into_iter().flat_map(|&(xv, yv)| {
+            let (x, y) = (x as isize + xv, y as isize + yv);
+            let (x, y) = (x as usize, y as usize);
+            self.get(x, y)
+                .into_iter()
+                .filter(|b| *b == true)
+        }).count()
+    }
+
     pub fn width(&self) -> usize {
         self.width
     }
@@ -79,16 +90,14 @@ impl GameOfLife {
         std::mem::swap(&mut self.field, &mut self.next);
     }
 
+    // Implements only Conway's rule for now
     fn apply_rule(&self, x: usize, y: usize) -> bool {
         let cell = self.get(x, y).unwrap_or(false);
-
-        let mut neighbours = self.rule.offsets().into_iter().flat_map(|&(xv, yv)| {
-            let (x, y) = (x as isize + xv, y as isize + yv);
-            let (x, y) = (x as usize, y as usize);
-            self.get(x, y)
-        });
-
-        self.rule.apply(cell, &mut neighbours)
+        match (cell, self.neighbours(x, y)) {
+            (false, 3) => true,
+            (true, 2) | (true, 3) => true,
+            _ => false
+        }
     }
 }
 
@@ -97,7 +106,7 @@ fn main() {
     rustbox.set_input_mode(InputMode::EscMouse);
 
     let (width, height) = (rustbox.width(), rustbox.height());
-    let mut game = GameOfLife::new(width, height, rule::Conway);
+    let mut game = GameOfLife::new(width, height);
     let mut active = false;
 
     // Light Weight Spaceship
